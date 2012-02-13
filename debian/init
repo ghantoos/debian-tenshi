@@ -61,9 +61,8 @@ case "$1" in
 	echo "."
 	;;
   status)
-           status_of_proc -p $PIDFILE $DAEMON $NAME && exit 0 || exit $?
-        echo "blah"
-        ;;
+    status_of_proc -p $PIDFILE $DAEMON $NAME && exit 0 || exit $?
+    ;;
   *)
 	echo "Usage: /etc/init.d/tenshi {start|stop|status|restart|reload|force-reload}" >&2
 	exit 1

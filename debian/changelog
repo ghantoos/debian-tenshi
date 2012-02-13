@@ -1,3 +1,10 @@
+tenshi (0.13-2) unstable; urgency=low
+
+  * debian/init:
+    - Removed trailing development statement.
+
+ -- Ignace Mouzannar <mouzannar@gmail.com>  Mon, 13 Feb 2012 08:29:43 +0400
+
 tenshi (0.13-1) unstable; urgency=low
 
   * New upstream release.
