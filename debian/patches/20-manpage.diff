@@ -22,7 +22,16 @@ Last-Update: 2011-03-06
  .TP
  .I -P <pid file>
  Define the file containing the PID of the process, this overrides any 'pidfile'
-@@ -503,8 +503,8 @@
+@@ -187,7 +187,7 @@
+ All valid syslog messages are parsed by default, while non-syslog ones are
+ discarded unless the special
+ .I noprefix
+-queue is set. This option allows to define an additional valid prefix for watching
++queue is set. This option allows one to define an additional valid prefix for watching
+ other type of logs. If the regexp is matched then the prefix is removed from
+ the log and the first grouped string is used for the hostname field. This may
+ be specified multiple times to watch many different non-syslog logs.
+@@ -511,8 +511,8 @@
  
  It also requires Net::SMTP module for mailing reports, which should be included
  in your perl installation, and IO::BufferedSelect. If you miss any of them you

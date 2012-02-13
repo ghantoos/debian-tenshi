@@ -11,6 +11,8 @@
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
 # Short-Description: tenshi log monitoring and reporting tool
+# Description: This script starts/stops the tenshi log monitoring and
+#              reporting tool.
 ### END INIT INFO
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
@@ -21,6 +23,8 @@ PIDFILE=$PIDDIR/$NAME.pid
 DAEMONUSER=tenshi
 
 test -x $DAEMON || exit 0
+
+. /lib/lsb/init-functions
 
 do_start() {
 	# make sure we have our PID directory
@@ -56,8 +60,12 @@ case "$1" in
 	do_start
 	echo "."
 	;;
+  status)
+           status_of_proc -p $PIDFILE $DAEMON $NAME && exit 0 || exit $?
+        echo "blah"
+        ;;
   *)
-	echo "Usage: /etc/init.d/tenshi {start|stop|restart|reload|force-reload}" >&2
+	echo "Usage: /etc/init.d/tenshi {start|stop|status|restart|reload|force-reload}" >&2
 	exit 1
 	;;
 esac
