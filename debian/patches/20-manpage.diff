@@ -4,6 +4,15 @@ Last-Update: 2009-10-08
 
 --- a/tenshi.8
 +++ b/tenshi.8
+@@ -36,7 +36,7 @@
+ 
+ The program reads a configuration file
+ .RI ( tenshi.conf )
+-and then forks a deamon for monitoring the specified log files.
++and then forks a daemon for monitoring the specified log files.
+ 
+ .SH OPTIONS
+ .SS
 @@ -62,7 +62,7 @@
  and expects log lines to be fed to standard in. When it receives an EOF it will
  stop processing. No alerts will be sent in this mode, it is used solely for

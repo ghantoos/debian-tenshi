@@ -7,14 +7,19 @@ case "$1" in
     configure)
       if ! getent passwd tenshi 2>&1 >/dev/null; then
          # the account doesn't exist... time to create it
-         echo -n "Adding tenshi system user.."
-         adduser --quiet --system --group --home /var/run/tenshi tenshi
-         echo ".done"
+         echo "Adding tenshi system user ..."
+         adduser --quiet --system --group --home /var/lib/tenshi tenshi
          adduser --quiet tenshi adm
+         chown tenshi:root /var/lib/tenshi
+      elif getent passwd tenshi | grep "/var/run/tenshi" 2>&1 >/dev/null; then
+         # change the user's home directory to /var/lib/tenshi on 
+         # previous installations
+         echo "Updating tenshi user's home directory ... "
+         usermod -d /var/lib/tenshi tenshi
+         chown tenshi:root /var/lib/tenshi
       fi
 
       chown tenshi:root /etc/tenshi/tenshi.conf
-      chown tenshi:root /var/run/tenshi
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)

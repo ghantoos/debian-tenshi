@@ -2,8 +2,10 @@ Source: tenshi
 Section: admin
 Priority: optional
 Maintainer: Ignace Mouzannar <mouzannar@gmail.com>
-Build-Depends: debhelper (>= 7.0.50~), quilt (>= 0.46-7)
-Standards-Version: 3.8.3
+Build-Depends: debhelper (>= 7.0.8), quilt (>= 0.46-7)
+Standards-Version: 3.9.1
+Vcs-Svn: svn://svn.debian.org/collab-maint/ext-maint/tenshi/trunk/
+Vcs-Browser: http://svn.debian.org/viewsvn/collab-maint/ext-maint/tenshi/trunk/
 Homepage: http://dev.inversepath.com/trac/tenshi
 
 Package: tenshi

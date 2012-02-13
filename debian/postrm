@@ -5,10 +5,10 @@ set -e
 
 case "$1" in
        purge)
-         rm -rf /var/run/tenshi ||true
+         rm -rf /var/lib/tenshi ||true
          if getent passwd tenshi 2>&1 >/dev/null; then
              echo -n "Removing tenshi system user.."
-             deluser --quiet tenshi ||true
+             userdel tenshi
              echo ".done"
          fi
 				 

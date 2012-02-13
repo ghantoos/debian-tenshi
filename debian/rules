@@ -3,6 +3,3 @@
 
 %:
 	dh $@ --with quilt
-
-override_dh_installinit:
-	dh_installinit -R
