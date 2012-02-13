@@ -1,0 +1,26 @@
+##
+## spamd (Courier) rules include rules
+## (c)2005 by Tadeusz Pietraszek (tadek@pietraszek.org)
+##
+
+##
+## The idea is to have all kinds of messages here, interesting ones
+## go to mail/critical/..., uninteresting ones go to trash
+## There's also a catch rule for all other postifx stuff
+##
+
+group ^spamd:
+misc ^spamd: spamd starting
+misc ^spamd: server started on port 783/tcp (running version 3.0.3)
+misc ^spamd: connection from localhost.localdomain \[127.0.0.1\] at port (.+)
+misc ^spamd: server successfully spawned child process, pid (.+)
+misc ^spamd: info: setuid to vmail succeeded
+misc ^spamd: processing message (.+) for vmail:5000
+misc ^spamd: processing message (.+) for vmail:5000 in (.+) seconds, (.+) bytes.
+misc ^spamd: clean message (.+) for vmail:5000 in (.+) seconds, (.+) bytes.
+misc ^spamd: identified spam (.+) for vmail:5000 in (.+) seconds, (.+) bytes.
+misc ^spamd: result: (.+)
+
+group_end
+
+

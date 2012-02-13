@@ -1,0 +1,20 @@
+##
+## zoneserver include rules
+## (c)2005 by Tadeusz Pietraszek (tadek@pietraszek.org)
+##
+
+##
+## The idea is to have all kinds of messages here, interesting ones
+## go to mail/critical/..., uninteresting ones go to trash
+## There's also a catch rule for all other stuff
+##
+
+#zoneserver
+group ^zoneserver
+trash ^zoneserver\.etc_maradns_mararc: Log: Root directory changed
+trash ^zoneserver\.etc_maradns_mararc: Log: Root privledges dropped
+trash ^zoneserver\.etc_maradns_mararc: Log: Socket opened on TCP port 53
+trash ^zoneserver
+group_end
+
+

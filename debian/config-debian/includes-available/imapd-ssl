@@ -1,0 +1,30 @@
+##
+## imapd-ssl (Courier) rules include rules
+## (c)2005 by Tadeusz Pietraszek (tadek@pietraszek.org)
+##
+
+##
+## The idea is to have all kinds of messages here, interesting ones
+## go to mail/critical/..., uninteresting ones go to trash
+## There's also a catch rule for all other postifx stuff
+##
+
+group ^imapd-ssl:
+mail  ^imapd-ssl: (LOGIN|LOGOUT|DISCONNECTED), user=(.+), ip=(.+), protocol=IMAP
+mail  ^imapd-ssl: (LOGIN|LOGOUT|DISCONNECTED), user=(.+), ip=(.+), headers=(.+), body=(.+), time=(.+), starttls=1
+mail  ^imapd-ssl: Connection, ip=(.+)
+mail  ^imapd-ssl: DISCONNECTED, user=(.+), ip=(.+), protocol=IMAP
+mail ^imapd-ssl: TIMEOUT, user=(?:.+), ip=(.+), headers=(.+), body=(.+), rcvd=(.+), sent=(.+), time=(.+), starttls=(.+)
+
+mail  ^imapd-ssl:
+
+group_end
+
+
+group ^imaplogin:
+
+mail  ^imaplogin: Connection, ip=(?:.+)
+mail  ^imaplogin: (LOGIN|LOGOUT|DISCONNECTED), user=(?:.+), ip=(?:.+), protocol=IMAP
+mail  ^imaplogin: (LOGIN|LOGOUT|DISCONNECTED), user=(?:.+), ip=(?:.+), headers=(.+), body=(.+), time=(.+)
+
+group_end

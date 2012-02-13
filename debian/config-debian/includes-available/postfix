@@ -1,0 +1,58 @@
+##
+## postfix rules include rules
+## (c)2005 by Tadeusz Pietraszek (tadek@pietraszek.org)
+##
+
+##
+## The idea is to have all kinds of messages here, interesting ones
+## go to mail/critical/..., uninteresting ones go to trash
+## There's also a catch rule for all other postifx stuff
+##
+
+group ^postfix
+#smtpd
+mail ^postfix/smtpd: (?:connect|disconnect) from (.+)
+
+trash ^postfix/smtpd: (.+): client=(.+)
+
+mail ^postfix/smtpd: (.+): client=(.+), sasl_method=PLAIN, sasl_username=(?:.+)
+mail ^postfix/smtpd: NOQUEUE: reject: RCPT from (.+) Relay access denied; (.+)
+mail ^postfix/smtpd: NOQUEUE: reject: RCPT from (.+) Recipient address rejected: User unknown in virtual mailbox table; (.+)
+
+trash ^postfix/smtpd: (?:begin|commit) transaction
+trash ^postfix/smtpd: sql plugin (.+)
+trash ^postfix/smtpd: sql auxprop plugin (.+)
+
+
+#smtp
+mail ^postfix/smtp: connect to (.+): Connection refused \(port 25\)
+mail ^postfix/smtp: connect to (.+): Connection timed out \(port 25\)
+mail ^postfix/smtp: (.+): to=(.+), relay=(.+), delay=(.+), status=deferred (.+)
+mail ^postfix/smtp: (.+): to=(.+), relay=(.+), delay=(.+), status=sent (.+)
+mail ^postfix/smtp: (.+): to=(.+), orig_to=(.+), relay=(.+), delay=(.+), status=sent (.+)
+
+#virtual
+mail ^postfix/virtual: (.+): to=(?:.+), relay=virtual, delay=(.+), status=sent (.+)
+mail ^postfix/virtual: (.+): to=(?:.+), orig_to=(.+), relay=virtual, delay=(.+), status=sent (.+)
+##qmgr
+trash ^postfix/qmgr: (.+): removed
+trash ^postfix/qmgr: (.+) from=(.+), size=(.+), nrcpt=(.+)
+#cleanup
+trash ^postfix/cleanup: (.+): message-id=(.+)
+#local
+mail ^postifx/local: (.+): to=(?:.+), orig_to=(.+), relay=local, delay=(.+), status=sent (.+)
+mail ^postifx/local: (.+): to=(?:.+), relay=local, delay=(.+), status=sent (.+)
+mail ^postfix/local: (.+): to=(?:.+), relay=local, delay=(.+), status=sent \(forwarded as (.+)\)
+
+#pipe
+mail ^postfix/pipe: (.+): to=(?:.+), relay=maildrop, delay=(.+), status=sent (.+)
+
+#pickup
+mail ^postfix/pickup: (.+) uid=(.+) from=(?:.+)
+
+
+#everyting else
+mail ^postfix/
+group_end
+
+

@@ -1,0 +1,27 @@
+##
+## cron include rules
+## (c)2005 by Tadeusz Pietraszek (tadek@pietraszek.org)
+##
+
+##
+## The idea is to have all kinds of messages here, interesting ones
+## go to mail/critical/..., uninteresting ones go to trash
+## There's also a catch rule for all other cron stuff
+##
+
+#cron
+group ^CRON
+trash ^CRON: \(pam_unix\) session (?:opened|closed) for user (?:www-data|root|postgres)
+report ^CRON:
+group_end
+
+#also cron (don't know what the difference is
+group ^/USR/SBIN/CRON
+trash ^/USR/SBIN/CRON: \(www-data\) CMD \(/usr/local/awstats/awstats_updateall\.pl now -config=awstats -update >/dev/null\)
+trash ^/USR/SBIN/CRON: \(root\) CMD \(  \[ -d /var/lib/php4 \] && find /var/lib/php4/ -type f -cmin \+$\(/usr/lib/php4/maxlifetime\) -print0 | xargs -r -0 rm\)
+trash ^/USR/SBIN/CRON: \(root\) CMD \(   run-parts --report /etc/cron\.(.+)\)
+trash ^/USR/SBIN/CRON: \(postgres\) CMD \(if ! pidof /usr/lib/postgresql/bin/pg_autovacuum > /dev/null && \[ -x /usr/lib/postgresql/bin/do\.maintenance \]; then /usr/lib/postgresql/bin/do\.maintenance -a; fi\)
+report ^/USR/SBIN/CRON:
+group_end
+
+

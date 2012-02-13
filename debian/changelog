@@ -1,0 +1,62 @@
+tenshi (0.4-3) unstable; urgency=low
+
+  * QA upload.
+  * debian/watch:
+    - Corrected the uscan regular expression, to get the latest version number
+
+ -- Ignace Mouzannar <mouzannar@gmail.com>  Wed, 07 Oct 2009 15:10:28 +0200
+
+tenshi (0.4-2) unstable; urgency=low
+
+  * Orphan package, set maintainer to Debian QA Group.
+  * Correct init.d script dependencies (Closes: #547562).
+  * Make sure to create /var/run/tenshi/ during boot (Closes: #470691).
+    Patch from Albert Damen and Ubuntu.
+  * Update to debhelper 7.
+  * Change standards-version from 3.6.2.1 to 3.8.3.
+  * Add ${misc:Depends} to depends list to make debhelper happy.
+  * Remove redundant call to update-rc.d in postinst.
+  * Add homepage URL in control file.
+  * Update URL in watch file to use new upstream home site.
+
+ -- Petter Reinholdtsen <pere@debian.org>  Tue, 06 Oct 2009 22:45:34 +0200
+
+tenshi (0.4-1.3) unstable; urgency=low
+
+  * Non-maintainer upload to hopefully fix the final glitches in former
+    NMUs. It seems that some ugly spell has been sent towards tenshi.
+  * Remove the debian/po directory to avoid the package to
+    appear on the l10n coordination pages
+
+ -- Christian Perrier <bubulle@debian.org>  Fri, 19 Jan 2007 06:44:21 +0100
+
+tenshi (0.4-1.2) unstable; urgency=low
+
+  * Non-maintainer upload to really fix the issue fixed in the former NMU
+  * Use dh_installdirs instead of "cp -r" to guarantee that subdirs of
+    /etc/tenshi. This really Closes: #407105
+
+ -- Christian Perrier <bubulle@debian.org>  Thu, 18 Jan 2007 14:45:38 +0100
+
+tenshi (0.4-1.1) unstable; urgency=low
+
+  * Non-maintainer upload to fix an RC bug and
+    longstanding debconf abuse
+  * Include the includes-active in directories created under
+    /etc/tenshi
+  * Remove the debconf note. Closes: #357596
+    This also removes the need for translations.
+    Sorry to the Czech translator. Closes: #360284
+    This also fixes the incorrect debconf dependency that was
+    blocking the cdebconf transition.
+  * Lintian fix:
+    - Add a LSB header to the init script
+
+ -- Christian Perrier <bubulle@debian.org>  Tue, 16 Jan 2007 20:19:50 +0100
+
+tenshi (0.4-1) unstable; urgency=low
+
+  * Initial release Closes: #268259
+
+ -- Tadeusz Pietraszek <tadek@pietraszek.org>  Tue, 21 Feb 2006 18:41:54 +0200
+

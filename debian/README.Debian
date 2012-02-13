@@ -1,0 +1,23 @@
+tenshi for Debian
+-----------------
+
+You have just installed Tenshi - a log monitoring program.
+
+Note that (unlike some other programs) this program will only be useful
+if it has been customized. You're strongly advised to read the package manual 
+(man 8 tenshi) and edit the main configuration file (/etc/tenshi/tenshi.conf).
+
+To facilitate the use of the program, we have split service-specific configu-
+-ration files into many files located under /etc/tenshi/includes-available
+which can be activated by linking then into /etc/tenshi/includes-active, e.g.:
+
+    ln -s ../includes-available/ssh  (in /etc/includes-active directory)
+
+Currently all files are disabled and the package uses a single "catch-all" rule.
+
+You are more than welcome to submit your custom-made configuration include to
+the package maintainer.
+
+Have fun.
+ 
+ -- Tadek <tadek@pietraszek.org>, Thu, 23 Feb 2006 18:41:54 +0200

@@ -1,0 +1,33 @@
+##
+## ssh rules include rules
+## (c)2005 by Tadeusz Pietraszek (tadek@pietraszek.org)
+##
+
+##
+## The idea is to have all kinds of messages here, interesting ones
+## go to mail/critical/..., uninteresting ones go to trash
+## There's also a catch rule for all other ssh stuff
+##
+
+
+group ^sshd(?:\(pam_unix\))?:
+report   ^sshd: Did not receive identification string from (.+)
+report   ^sshd: fatal: Timeout before authentication for (.+)
+#critical ^sshd: Illegal user
+report ^sshd: Illegal user (.+) from
+
+report   ^sshd: Connection from (.+)
+report   ^sshd: Connection closed (.+)
+report   ^sshd: Closing connection (.+)
+report   ^sshd: Found matching (.+) key: (.+)
+report   ^sshd: Accepted publickey (.+)
+report   ^sshd: Accepted rsa for (?:.+) from (.+) port (.+)
+report   ^sshd: Accepted keyboard-interactive/pam for (.+) from (.+) port (.+)
+root     ^sshd: \(pam_unix\) session opened for user root by root\(uid=0\)
+root     ^sshd: \(pam_unix\) session opened for user root by \(uid=0\)
+report   ^sshd: \(pam_unix\) session closed for user (.+)
+report   ^sshd: \(pam_unix\) session opened for user (?:.+)
+report   ^sshd: \(pam_unix\) authentication failure; logname=
+group_end
+
+
