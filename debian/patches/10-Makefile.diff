@@ -2,7 +2,7 @@ Description:
  - Corrects the documentation installation path in the Makefile
  - Removes installation on the following files: INSTALL, LICENSE and Changelog
 Author: Ignace Mouzannar <mouzannar@gmail.com>
-Last-Update: 2009-10-08
+Last-Update: 2011-03-06
 
 --- a/Makefile
 +++ b/Makefile
@@ -17,6 +17,6 @@ Last-Update: 2009-10-08
  
 -DOCS = README INSTALL CREDITS LICENSE Changelog FAQ
 +DOCS = README CREDITS FAQ
- SAMPLES = tenshi.conf tenshi.debian-init tenshi.gentoo-init tenshi.solaris-init tenshi.redhat-init tenshi.spec
+ SAMPLES = tenshi.conf tenshi.debian-init tenshi.gentoo-init tenshi.solaris-init tenshi.redhat-init tenshi.suse-init tenshi.redhat-spec tenshi.suse-spec
  BIN = Makefile tenshi
  MAN = tenshi.8
