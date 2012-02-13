@@ -1,8 +1,40 @@
-tenshi (0.4-3) unstable; urgency=low
+tenshi (0.11-1) unstable; urgency=low
 
-  * QA upload.
+  * New maintainer. (Closes: #549956)
+  * New upstream release.
+  * debian/copyright:
+    - License was changed from GPL to ISC.
+    - Upstream's download URL was updated.
   * debian/watch:
-    - Corrected the uscan regular expression, to get the latest version number
+    - Corrected the uscan regular expression, to get the latest version number.
+  * debian/rules:
+    - Simplified the rules file using dh7 features.
+    - Added the '-R' option to dh_installinit in order to restart the tenshi
+      service after an upgrade.
+  * debian/control:
+    - Updated debhelper dependency to (>= 7.0.50~).
+    - Added dependency on quilt (>= 0.46-7).
+    - Added dependency on libio-bufferedselect-perl.
+  * debian/patches:
+    - Added 10-Makefile.diff: patches the Makefile correcting the 
+      documentation installation path, and preventing unwanted files 
+      from installing.
+    - Added 20-manpage.diff: corrects lintian warnings 
+      "hyphen-used-as-minus-sign" in tenshi's manpage.
+  * debian/config-debian/tenshi.conf:
+    - Updated the default configuration file using upstream's latest version.
+  * debian/init.d:
+    - Renamed debian/init.d as debian/init.
+  * debian/install:
+    - New file, added to install all the files located in 
+      debian/config-debian/* (instead of doing this through debian/rules).
+  * debian/postinst:
+    - Uses getent(1) instead of id(1) to check if user exists.
+  * debian/postrm:
+    - Replaced userdel with deluser (which is part of the adduser package).
+    - Removed the "rm -rf" of /etc/tenshi.
+  * debian/dirs:
+    - Added usr/share/man/man8.
 
  -- Ignace Mouzannar <mouzannar@gmail.com>  Wed, 07 Oct 2009 15:10:28 +0200
 

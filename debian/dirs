@@ -1,3 +1,5 @@
 usr/sbin
+etc/tenshi
 etc/tenshi/includes-available
 etc/tenshi/includes-active
+usr/share/man/man8

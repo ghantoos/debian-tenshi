@@ -1,0 +1,22 @@
+Description: 
+ - Corrects the documentation installation path in the Makefile
+ - Removes installation on the following files: INSTALL, LICENSE and Changelog
+Author: Ignace Mouzannar <mouzannar@gmail.com>
+Last-Update: 2009-10-08
+
+--- a/Makefile
++++ b/Makefile
+@@ -5,11 +5,11 @@
+ 
+ bindir = /usr/sbin
+ sysconfdir = /etc
+-docdir = /usr/share/doc/tenshi-${VERSION}
++docdir = /usr/share/doc/tenshi
+ mandir = /usr/share/man
+ libdir = /var/lib/tenshi
+ 
+-DOCS = README INSTALL CREDITS LICENSE Changelog FAQ
++DOCS = README CREDITS FAQ
+ SAMPLES = tenshi.conf tenshi.debian-init tenshi.gentoo-init tenshi.solaris-init tenshi.redhat-init tenshi.spec
+ BIN = Makefile tenshi
+ MAN = tenshi.8

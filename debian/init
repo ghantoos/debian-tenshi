@@ -1,0 +1,65 @@
+#!/bin/bash
+#
+# Debian configuration file - copied from tenshi.debian-init
+#
+### BEGIN INIT INFO
+# Provides:          tenshi
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Should-Start:      $named $mail-transport-agent
+# Should-Stop:       $named $mail-transport-agent
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: tenshi log monitoring and reporting tool
+### END INIT INFO
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/sbin/tenshi
+NAME=tenshi
+PIDDIR=/var/run/$NAME
+PIDFILE=$PIDDIR/$NAME.pid
+DAEMONUSER=tenshi
+
+test -x $DAEMON || exit 0
+
+do_start() {
+	# make sure we have our PID directory
+	if [ ! -d $PIDDIR ]; then
+		mkdir -p $PIDDIR
+		chown $DAEMONUSER:$DAEMONUSER $PIDDIR
+	fi
+	start-stop-daemon --start -c tenshi --pidfile $PIDFILE --startas $DAEMON -- -P $PIDFILE
+}
+
+case "$1" in
+  start)
+	echo -n "Starting log monitor: tenshi"
+	do_start
+	echo "."
+	;;
+  stop)
+	echo -n "Stopping log monitor: tenshi"
+	start-stop-daemon --stop --pidfile $PIDFILE 
+	echo "."
+	;;
+  reload|force-reload)
+	echo -n "Reloading log monitor: tenshi"
+	start-stop-daemon --stop --signal 1  --pidfile $PIDFILE
+ 	echo "."
+	;;
+  restart)
+	echo -n "Stopping log monitor: tenshi"
+	start-stop-daemon --stop --pidfile $PIDFILE
+	echo "."
+	sleep 1
+	echo -n "Starting log monitor: tenshi"
+	do_start
+	echo "."
+	;;
+  *)
+	echo "Usage: /etc/init.d/tenshi {start|stop|restart|reload|force-reload}" >&2
+	exit 1
+	;;
+esac
+
+exit 0

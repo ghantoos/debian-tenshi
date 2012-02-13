@@ -1,0 +1,35 @@
+Description: Corrects lintian warnings "hyphen-used-as-minus-sign" 
+Author: Ignace Mouzannar <mouzannar@gmail.com>
+Last-Update: 2009-10-08
+
+--- a/tenshi.8
++++ b/tenshi.8
+@@ -62,7 +62,7 @@
+ and expects log lines to be fed to standard in. When it receives an EOF it will
+ stop processing. No alerts will be sent in this mode, it is used solely for
+ measuring tenshi's line processing speed. For example:
+-time $(cat /var/log/messages|tenshi -p > /dev/null)
++time $(cat /var/log/messages|tenshi \-p > /dev/null)
+ .TP
+ .I -P <pid file>
+ Define the file containing the PID of the process, this overrides any 'pidfile'
+@@ -147,7 +147,7 @@
+ specified multiple times to watch more than one fifo file. This option is meant to be used
+ only when the installed 'tail' binary doesn't behave properly with FIFOs, please
+ test your tail implementation before using this. A suitable test is 'echo foo |
+-tail -f', if this dies complaining of an illegal seek, you have a broken
++tail \-f', if this dies complaining of an illegal seek, you have a broken
+ version of tail installed. GNU tail is broken in this way, most BSD tails will
+ work. This mode can be used along with
+ .I logfile
+@@ -506,8 +506,8 @@
+ 
+ It also requires Net::SMTP module for mailing reports, which should be included
+ in your perl installation, and IO::BufferedSelect. If you miss any of them you
+-can grab them at CPAN (http://www.cpan.org) or using the CPAN shell (`perl -e
+-shell -MCPAN`).
++can grab them at CPAN (http://www.cpan.org) or using the CPAN shell (`perl \-e
++shell \-MCPAN`).
+ 
+ .SH BUGS
+ - Double quotation characters present in your logs might break csv output (depending on how you pipe/process
